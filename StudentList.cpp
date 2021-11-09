@@ -1,4 +1,4 @@
-// Iris Chang - Student List - 11/7/21
+// Iris Chang - Student List (User can add(creates new entry for student that prompts for first name, last name, id, and gpa), delete(prompts the user for id and removes the struct with that id from the vector), and print(print all students currently stored))- 11/7/21
 #include <iomanip> // For gpa float rounding
 #include <iostream>
 #include <vector>
@@ -14,9 +14,8 @@ struct Student
   float gpa;
 };
 
-vector <Student*> * structPointers;
 // User can add new student
-void Add()
+void Add(vector <Student*> * structPointers)
 {
   Student* student;
 
@@ -34,7 +33,7 @@ void Add()
   structPointers->push_back(student);
 }
 // User can print all students
-void Print()
+void Print(vector <Student*> * structPointers)
 {
   for(vector<Student*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
     std::cout << std::fixed << std::setprecision(2);
@@ -42,7 +41,7 @@ void Print()
   }
 }
 // User can delete student based on id
-void Delete()
+void Delete(vector <Student*> * structPointers)
 {
   int id;
   cout << "id:";
@@ -59,17 +58,18 @@ void Delete()
 
 int main()
 {
+  vector <Student*> * structPointers;
   structPointers = new vector <Student*>;
   char input[10];
   // check user input
   while (true){
     cin.getline(input, sizeof(input));
     if (!strcmp(input, "ADD")){
-      Add();
+      Add(structPointers);
     }else if(!strcmp(input, "PRINT")){
-      Print();
+      Print(structPointers);
     }else if(!strcmp(input,"DELETE")){
-      Delete();
+      Delete(structPointers);
     }else if(!strcmp(input,"QUIT")){
       break;
     }else{
