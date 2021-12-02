@@ -1,3 +1,4 @@
+// Iris Chang ~ 12/1/21 ~ the Classes and Inheritance assignment focuses on creating a database that includes video games, music, and movies or known as a media database.
 #include <string.h>
 #include <iostream>
 #include <vector>
@@ -8,13 +9,15 @@
 
 using namespace std;
 
+// The user can add each kind of media, including the information in each field.
 void Add(vector <Media*> * structPointers)
 {
   int input1;
+  // user input options
   cout << "Video Game (0) Music (1) Movie (2)" << endl;
   cin >> input1;
   cin.ignore();
-
+  // user chose video game
   if (input1 == 0){
     VideoGame* videogame;
     int inputYear;
@@ -40,6 +43,7 @@ void Add(vector <Media*> * structPointers)
     videogame->setRating(inputRating);
     structPointers->push_back(videogame);
   }
+  // user chose music
   else if (input1 == 1){
     Music* music;
     int inputYear;
@@ -69,6 +73,7 @@ void Add(vector <Media*> * structPointers)
     music->setArtist(inputArtist);
     structPointers->push_back(music);
   }
+  // user chose movie
   else if (input1 == 2){
     Movie* movie;
     int inputYear;
@@ -100,7 +105,7 @@ void Add(vector <Media*> * structPointers)
     structPointers->push_back(movie);
   }
 }
-
+// The user can search for and print objects currently in the media database by searching for the title or the year. If multiple objects match, they will all be listed.
 void Search(vector <Media*> * structPointers)
 {
   VideoGame videogame;
@@ -109,16 +114,17 @@ void Search(vector <Media*> * structPointers)
    int year;
   char title[20];
   int input2;
-  Media* child; // cast parent to child
+  Media* child;
 
   cout << "title (0) or year (1)";
   cin >> input2;
   cin.ignore();
+  // user chose title
   if (input2 == 0){
     cout << "title: ";
     cin.getline(title, sizeof(title));
     for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
-      child = (Media*)(*it);
+      child = (Media*)(*it); // cast parent to child
       if (!strcmp(child->getTitle(), title)){
 	if (child->type == 0){
 	  VideoGame* childNew = static_cast<VideoGame*>(child);
@@ -132,7 +138,9 @@ void Search(vector <Media*> * structPointers)
 	}
       }
     }
-  }else if(input2 == 1){
+  }
+  // user chose year
+  else if(input2 == 1){
     cout << "year: ";
     cin >> year;
     cin.ignore();
@@ -153,9 +161,7 @@ void Search(vector <Media*> * structPointers)
     }
   }
 }
-
-
-
+// The user can delete an item through the same functionality as the search method, following a confirmation option where the user can confirm whether they want to delete those objects.
 void Delete(vector <Media*> * structPointers)
 {
   VideoGame videogame;
@@ -164,12 +170,13 @@ void Delete(vector <Media*> * structPointers)
    int year;
   char title[20];
   int input2;
-  Media* child; // cast parent to child
+  Media* child; 
   int input3;
 
   cout << "title (0) or year (1)";
   cin >> input2;
   cin.ignore();
+  // user chose title
   if (input2 == 0){
     cout << "title: ";
     cin.getline(title, sizeof(title));
@@ -188,7 +195,9 @@ void Delete(vector <Media*> * structPointers)
 	}
       }
     }
-  }else if(input2 == 1){
+  }
+  // user chose year
+  else if(input2 == 1){
     cout << "year: ";
     cin >> year;
     cin.ignore();
@@ -208,6 +217,7 @@ void Delete(vector <Media*> * structPointers)
       }
     }
   }
+  // user confirmation
   cout << "would you like to delete yes (0) or no (1)";
   cin >> input3;
   cin.ignore();
