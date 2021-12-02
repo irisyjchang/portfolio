@@ -1,4 +1,4 @@
-#pragma once // only include header once, and ignore the header if you encounter it a second time to avoid the duplication
+#pragma once // only include header once, and ignore the header if encountered a second time to avoid the duplication
 #include <string.h>
 using namespace std;
 
@@ -7,7 +7,7 @@ class Media {
   char title[10];
   int year;
  public:
-  int type;
+  int type; // indicate child type if parent pointer is pointing to a child object
   int getYear();
   void setYear(int inYear);
   char* getTitle();
