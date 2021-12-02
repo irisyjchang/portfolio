@@ -106,10 +106,7 @@ void Search(vector <Media*> * structPointers)
   VideoGame videogame;
   Movie movie;
   Music music;
-  Media* media1 = &videogame;
-  Media* media2 = &music;
-  Media* media3 = &movie;
-  int year;
+   int year;
   char title[20];
   int input2;
   Media* child; // cast parent to child
@@ -157,44 +154,83 @@ void Search(vector <Media*> * structPointers)
   }
 }
 
-// User can delete student based on year or title
+
+
 void Delete(vector <Media*> * structPointers)
 {
-  int input;
-  int year;
+  VideoGame videogame;
+  Movie movie;
+  Music music;
+   int year;
   char title[20];
-  cout << "year (0) or title (1)";
-  cin >> input;
-  cin.ignore();
+  int input2;
+  Media* child; // cast parent to child
+  int input3;
 
-  // Delete from year
-  if (input == 0){
+  cout << "title (0) or year (1)";
+  cin >> input2;
+  cin.ignore();
+  if (input2 == 0){
+    cout << "title: ";
+    cin.getline(title, sizeof(title));
+    for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
+      child = (Media*)(*it);
+      if (!strcmp(child->getTitle(), title)){
+	if (child->type == 0){
+	  VideoGame* childNew = static_cast<VideoGame*>(child);
+	  cout<< childNew->getTitle() << " " << childNew->getRating() << " " << childNew->getYear() << " " << childNew->getPublisher() << endl;
+	}else if(child->type == 1){
+	  Music* childNew = static_cast<Music*>(child);
+	  cout<< childNew->getTitle() << " " << childNew->getArtist() << " " << childNew->getYear() << " " << childNew->getPublisher() << " " <<childNew->getDuration() << endl;
+	}else if (child->type ==2){
+	  Movie* childNew = static_cast<Movie*>(child);
+	  cout<< childNew->getTitle() << " " << childNew->getDirector() << " " << childNew->getYear() << " " << childNew->getRating() << " " << childNew->getDuration() << endl;
+	}
+      }
+    }
+  }else if(input2 == 1){
     cout << "year: ";
     cin >> year;
     cin.ignore();
     for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
-      if(year==((*it)->getYear())){
-	delete *it; // delete student record
-	structPointers->erase(it); // remove vector entry
-	return;
+      child = (Media*)(*it);
+      if (child->getYear()==year){
+	if (child->type == 0){
+	  VideoGame* childNew = static_cast<VideoGame*>(child);
+	  cout<< childNew->getTitle() << " " << childNew->getRating() << " " << childNew->getYear() << " " << childNew->getPublisher() << endl;
+	}else if(child->type == 1){
+	  Music* childNew = static_cast<Music*>(child);
+	  cout<< childNew->getTitle() << " " << childNew->getArtist() << " " << childNew->getYear() << " " << childNew->getPublisher() << " " << childNew->getDuration() << endl;
+	}else if (child->type ==2){
+	  Movie* childNew = static_cast<Movie*>(child);
+	  cout<< childNew->getTitle() << " " << childNew->getDirector() << " " << childNew->getYear() << " " << childNew->getRating() << " " << childNew->getDuration() << endl;
+	}
       }
     }
   }
-  // Delete from title
-  else if (input == 1){
-    cout << "title: ";
-    cin.getline(title, sizeof(title));
-    for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
-      if(title==((*it)->getTitle())){
-	delete *it; // delete student record
-	structPointers->erase(it); // remove vector entry
-	return;
+  cout << "would you like to delete yes (0) or no (1)";
+  cin >> input3;
+  cin.ignore();
+  if (input3 == 0){
+    if (input2 == 1){ // year
+      for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
+	if(child->getYear()==year){
+	  delete *it; // delete record
+	  structPointers->erase(it); // remove vector entry
+	  return;
+	}
+      }
+    }else if(input2 == 0){ // title
+      for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
+	if(!strcmp(child->getTitle(), title)){
+	  delete *it; // delete record
+	  structPointers->erase(it); // remove vector entry
+	  return;
+	}
       }
     }
   }
 }
-
-
 int main()
 {
   vector <Media*> * structPointers;
