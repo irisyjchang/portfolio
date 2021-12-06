@@ -224,6 +224,7 @@ void Delete(vector <Media*> * structPointers)
   if (input3 == 0){
     if (input2 == 1){ // year
       for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
+	child = (Media*)(*it);
 	if(child->getYear()==year){
 	  delete *it; // delete record
 	  structPointers->erase(it); // remove vector entry
@@ -232,6 +233,7 @@ void Delete(vector <Media*> * structPointers)
       }
     }else if(input2 == 0){ // title
       for(vector<Media*>::iterator it = structPointers->begin(); it != structPointers->end();it++){
+	child = (Media*)(*it);
 	if(!strcmp(child->getTitle(), title)){
 	  delete *it; // delete record
 	  structPointers->erase(it); // remove vector entry
