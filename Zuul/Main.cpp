@@ -3,7 +3,14 @@
 #include <iostream>
 using namespace std;
 
-vector <Room*> * structPointers;
+
+struct door
+{
+  Room* input;
+  Room* output;
+};
+
+vector <door> plaza;
 Room* room1 = new Room("You are currently in Tim Horton. Eat a bagel!", "");
 structPointers->push_back(room1);
 Room* room2 = new Room("You are currently in Chipotle. Eat a burrito!", "burrito");
@@ -78,6 +85,7 @@ int main()
   return 0;
  
   vector <Room*> * map;
+  
 }
 
 
