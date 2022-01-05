@@ -2,7 +2,7 @@
 #include "Room.h"
 #include <iostream>
 
-Room::Room(char inDescription[10], char inItem[10]){
-  strcpy(description, inDescription);
-  strcpy(item, inItem);
+Room::Room(const char* inDescription, const char* inItem){
+  description = inDescription;
+  item = inItem;
 }
