@@ -1,3 +1,4 @@
+// Zuul by Iris Chang 1/5/22 ~ A text based adventure in a fun plaza with numerous different restaurants.
 #include <string.h>
 #include "Room.h"
 #include "Door.h"
@@ -8,7 +9,8 @@ using namespace std;
 int main()
 {
 
-
+  // alert game introduction for user
+  cout << "You can navigate through the plaza and explore the different restaurants. \nYou only get once chance in each restaurant because the line for each restaurant is super long and there is no time for you to wait! \nYour inventory is limited to 1 item as it would be difficult to open the doors with multiple items in your hands! Hence, each restaurant will have one item as well! Your goal is to feast on the most popular item in the plaza! Have fun!";
   Room* rooms[15];
   vector <Door*> plaza;
 
