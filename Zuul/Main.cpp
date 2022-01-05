@@ -47,7 +47,7 @@ int main()
   plaza.push_back(new Door(rooms[13],rooms[14]));
 
   Room* itCurrent = rooms[0];
-  char* inventory = 0;
+  char* inventory = NULL;
 
   bool game = true;
   while (game){
@@ -67,7 +67,7 @@ int main()
 	          cin >> option;
             // check for full inventory
 	          if (option == 0){
-		          if ((strcmp(inventory, "") == 0)){
+		          if (inventory == NULL){
                 inventory = const_cast<char *>(itCurrent->item);
                 // condition
                 if (strcmp(itCurrent->item, "pancake") == 0){
@@ -82,7 +82,7 @@ int main()
                   // check for full room
                   if (itCurrent->item == ""){
                    itCurrent->item = inventory;
-                   inventory = 0;
+                   inventory = NULL;
                   }else{
                     cout << "Full room...swap item? 0 (yes) or 1 (no) ";
                     cin >> option;
@@ -105,9 +105,9 @@ int main()
             cin >> option;
             if (option == 0){
               // check for empty inventory
-              if (inventory == 0){
+              if (inventory == NULL){
                 cout << "Empty inventory...";
-              } else if (inventory != 0){
+              } else {
                 itCurrent->item = inventory;
                 inventory = 0;
               }
@@ -121,6 +121,3 @@ int main()
   }
   return 0;
 }
-
-
-
