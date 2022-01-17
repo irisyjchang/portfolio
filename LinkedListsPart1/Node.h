@@ -13,4 +13,4 @@ class Node{
  private:
   Student* student;
   Node* next;
-}
+};
