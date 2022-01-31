@@ -86,7 +86,7 @@ int main(){
       if (head == NULL){
 	head = node;
       }else if (head->getNext()==NULL){
-	if (head->getStudent()->id >= node->getStudent()->id){
+        if (head->getStudent()->id >= node->getStudent()->id){
 	  // insert before head
 	  node->setNext(head);
 	  head=node;
@@ -95,22 +95,31 @@ int main(){
 	  head->setNext(node);
 	}
       }else{
+	if (head->getStudent()->id >= node->getStudent()->id){
+	  // insert before head
+	  node->setNext(head);
+	  head=node;
+	}else{
 	addNode(head, node);
+	}
       }
   }else if (strcmp(input, "PRINT") == 0){
       print(head);      
-    }else if (strcmp (input, "DELETE") == 0){
+    } else if (strcmp (input, "DELETE") == 0) {
 	int id; 
 	cout << "ID: ";
 	cin >> id;
-	if (head->getNext() == NULL){
-	  if (head->getStudent()->id == id){
-	    head = NULL;
-	  }
+	if (head == NULL){
+	}else if (head->getNext() == NULL){
+	     if (head->getStudent()->id == id)
+	        head = NULL;
+	}else{
+	    if (head->getStudent()->id == id)
+	      head=head->getNext();
+	    else
+	      deleteNode(head, id);
 	}
-	deleteNode(head, id);
-      }
-    else if (strcmp(input, "AVERAGE") == 0){
+    }else if (strcmp(input, "AVERAGE") == 0){
       int count;
       float totalGPA;
       totalGPA = averageGPA (head);
