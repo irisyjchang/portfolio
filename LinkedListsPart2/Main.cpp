@@ -46,11 +46,36 @@ Node* allocateNode()
       }
 }
 
+void deleteNode(Node* node, int id){
+  if (node == NULL){
+    return;
+  }else if (node->getNext() == NULL){
+    return;
+  }else if(node->getNext()->getStudent()->id == id){
+    node->setNext(node->getNext()->getNext()); 
+  }else{
+    deleteNode(node->getNext(), id);
+  }
+}
+float averageGPA(Node *node){
+  if (node == NULL){
+    return 0;
+  }else{
+    return averageGPA(node->getNext()) + node->getStudent()->gpa;
+  }
+}
+int countNode (Node *node){
+  if (node == NULL){
+    return 0;
+  }else{
+    return countNode(node->getNext()) + 1;
+  }
+}
 int main(){
   Node* head = NULL;
   char input[10];
   while (true){
-    cout << "QUIT/ADD/PRINT/AVERAGE" << endl;
+    cout << "QUIT/DELETE/ADD/PRINT/AVERAGE" << endl;
     cin >> input;
     cin.ignore();
     if (strcmp (input, "QUIT") == 0){
@@ -74,10 +99,28 @@ int main(){
       }
   }else if (strcmp(input, "PRINT") == 0){
       print(head);      
-}else if (strcmp(input, "AVERAGE") == 0){
+    }else if (strcmp (input, "DELETE") == 0){
+	int id; 
+	cout << "ID: ";
+	cin >> id;
+	if (head->getNext() == NULL){
+	  if (head->getStudent()->id == id){
+	    head = NULL;
+	  }
+	}
+	deleteNode(head, id);
+      }
+    else if (strcmp(input, "AVERAGE") == 0){
+      int count;
+      float totalGPA;
+      totalGPA = averageGPA (head);
+      cout << totalGPA << endl;
+      count = countNode(head);
+      cout << count << endl;
+      cout << (totalGPA/count) << endl;
     }else{
       cout << "ERROR" << endl;
     }
-}
+  }
   return 0;
 }
