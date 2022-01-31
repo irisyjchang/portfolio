@@ -1,3 +1,4 @@
+// Linked Lists Part 2 - allow user to ADD/PRINT/GPA/DELETE/QUIT/AVERAGE - an add on from Student List project
 #include <iostream>
 #include "Node.h"
 
@@ -111,12 +112,15 @@ int main(){
 	cin >> id;
 	if (head == NULL){
 	}else if (head->getNext() == NULL){
-	     if (head->getStudent()->id == id)
+	  if (head->getStudent()->id == id){
+	       delete head;
 	        head = NULL;
+	  }
 	}else{
-	    if (head->getStudent()->id == id)
+	  if (head->getStudent()->id == id){
+	      delete head;
 	      head=head->getNext();
-	    else
+	  }else{
 	      deleteNode(head, id);
 	}
     }else if (strcmp(input, "AVERAGE") == 0){
