@@ -1,6 +1,7 @@
 // Linked Lists Part 2 - allow user to ADD/PRINT/GPA/DELETE/QUIT/AVERAGE - an add on from Student List project
 #include <iostream>
 #include "Node.h"
+#include<iomanip>
 
 using namespace std;
 
@@ -53,7 +54,9 @@ void deleteNode(Node* node, int id){
   }else if (node->getNext() == NULL){
     return;
   }else if(node->getNext()->getStudent()->id == id){
-    node->setNext(node->getNext()->getNext()); 
+    Node* temp = node->getNext();
+    node->setNext(node->getNext()->getNext());
+    delete temp;
   }else{
     deleteNode(node->getNext(), id);
   }
@@ -118,18 +121,18 @@ int main(){
 	  }
 	}else{
 	  if (head->getStudent()->id == id){
-	      delete head;
+	    Node* temp = head;
 	      head=head->getNext();
-	  }else{
+	      delete temp;
+	  }else
 	      deleteNode(head, id);
 	}
     }else if (strcmp(input, "AVERAGE") == 0){
       int count;
       float totalGPA;
       totalGPA = averageGPA (head);
-      cout << totalGPA << endl;
+      cout << fixed << setprecision(2);
       count = countNode(head);
-      cout << count << endl;
       cout << (totalGPA/count) << endl;
     }else{
       cout << "ERROR" << endl;
