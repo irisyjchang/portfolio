@@ -6,4 +6,5 @@ class Student{
   char lastName[10];
   int id;
   float gpa;
+  Student();
 };
