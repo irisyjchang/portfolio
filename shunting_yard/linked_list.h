@@ -1,13 +1,18 @@
+#include <cstddef>
+#pragma once
+
 struct Node {
   Node* next;
   int value;
 };
-class linked_list {
+class Linked_List {
  private:
   Node* head;
  public:
   void print();
-  void add(int value);
-  void removeTail();
-  void removeHead();
+  void addTail(int value);
+  void addHead(int value);
+  int removeTail();
+  int removeHead();
+  Linked_List();
 };

@@ -1,8 +1,9 @@
 #include "linked_list.h"
+#pragma once
 
-class Queue:Linked_List
+class Queue: public Linked_List
 {
  public:
   void enqueue(int value);
-  void degueue();
-}
+  int dequeue();
+};

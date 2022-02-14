@@ -1,8 +1,9 @@
-#include "linked_list"
+#include "linked_list.h"
+#pragma once
 
-class Stack: Linked_List
+class Stack: public Linked_List
 {
  public:
   void push(int value);
-  void pop();
-}
+  int pop();
+};
